@@ -28,15 +28,9 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(v -> {
             String text = inputField.getText().toString();
 
-            // Logic for your Trip object
             Trip thisTrip = new Trip(text);
             System.out.println("New Trip ID: " + thisTrip.getId());
 
-            // Update the UI so the Test passes!
-            // If your test expects "trip created", use that string here.
-//            greetingText.setText("trip created");
-
-            // Or if you want it dynamic:
              greetingText.setText("Hello " + text);
         });
     }

@@ -1,6 +1,7 @@
 package com.example.android3081;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -25,11 +26,11 @@ public class mainTest {
     public void createTripButton() {
 
         onView(withId(R.id.editTextInput))
-                .perform(typeText("test"));
+                .perform(typeText("test"), closeSoftKeyboard());
 
         onView(withId(R.id.buttonSubmit)).perform(click());
 
         onView(withId(R.id.textViewGreeting))
-                .check(matches(withText("trip created")));
+                .check(matches(withText("Hello test")));
     }
 }
