@@ -1,7 +1,7 @@
 package com.example.android3081;
 
-import java.util.List
-import java.util.ArrayList
+import java.util.List;
+import java.util.ArrayList;
 
 public class Trip {
 
@@ -39,7 +39,7 @@ public class Trip {
 
     public boolean removeEvent(int idToRemove) {
         for (int i = 0; i < events.size(); i++) {
-            if (events.get(i) == idToRemove) {
+            if (events.get(i).getId() == idToRemove) {
                 events.remove(i);
                 return true;
             }
