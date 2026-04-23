@@ -1,3 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/vcs.xml
+/modules.xml
+/misc.xml
+/markdown.xml
+/deviceManager.xml
+/android3081.iml
+/caches/
