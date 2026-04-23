@@ -7,10 +7,12 @@ public class Trip {
 
     public static idCounter = 0;
     private int id;
+    private String tripName;
     private List<Event> events;
 
-    public Trip() {
+    public Trip(String name) {
         this.id = idCounter;
+        this.tripName = name;
         idCounter++;
         this.events = new ArrayList<Event>();
     }
@@ -21,6 +23,10 @@ public class Trip {
 
     public int getIdCounter() {
         return idCounter;
+    }
+
+    public String getTripName() {
+        return tripName;
     }
 
     public boolean addEvent(Event newEvent) {
