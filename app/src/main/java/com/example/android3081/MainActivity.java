@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(v -> {
             String text = inputField.getText().toString();
             Trip thisTrip = new Trip(text);
-            System.out.println(thisTrip.getId);
+            System.out.println(thisTrip.getId());
 
         });
     }
