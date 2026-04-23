@@ -1,6 +1,7 @@
 package com.example.android3081;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+//            return insets;
+//        }
+        EditText inputField = findViewById(R.id.editTextInput);
+        Button submitButton = findViewById(R.id.buttonSubmit);
+
+        submitButton.setOnClickListener(v -> {
+            String text = inputField.getText().toString();
+            Trip thisTrip = new Trip(text);
+            System.out.println(thisTrip.getId);
+
         });
     }
 }
