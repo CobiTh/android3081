@@ -5,24 +5,18 @@ import java.util.ArrayList;
 
 public class Trip {
 
-    public static idCounter = 0;
     private int id;
     private String tripName;
     private List<Event> events;
 
     public Trip(String name) {
-        this.id = idCounter;
+        this.id = Counter.getCounter().getIdCountAndIncrement();
         this.tripName = name;
-        idCounter++;
         this.events = new ArrayList<Event>();
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getIdCounter() {
-        return idCounter;
     }
 
     public String getTripName() {
