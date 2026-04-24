@@ -1,5 +1,7 @@
 package com.example.android3081;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,20 +20,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        boolean loggedIn = prefs.getBoolean("isLoggedIn", false);
 
-        // Reference the TextView from your XML
-        TextView greetingText = findViewById(R.id.textViewGreeting);
-        EditText inputField = findViewById(R.id.editTextInput);
-        Button submitButton = findViewById(R.id.buttonSubmit);
+        if(loggedIn) {
+            setContentView(R.layout.activity_main);
+            // Reference the TextView from your XML
+            TextView greetingText = findViewById(R.id.textViewGreeting);
+            EditText inputField = findViewById(R.id.editTextInput);
+            Button submitButton = findViewById(R.id.buttonSubmit);
 
-        submitButton.setOnClickListener(v -> {
-            String text = inputField.getText().toString();
+            submitButton.setOnClickListener(v -> {
+                String text = inputField.getText().toString();
 
-            Trip thisTrip = new Trip(text);
-            System.out.println("New Trip ID: " + thisTrip.getId());
+                Trip thisTrip = new Trip(text);
+                System.out.println("New Trip ID: " + thisTrip.getId());
 
-             greetingText.setText("Hello " + text);
-        });
+                greetingText.setText("Hello " + text);
+            });
+        }
+        else{
+            setContentView(R.layout.welcome_activity);
+
+            Button loginButton = findViewById(R.id.userLogin);
+            Button signUpButton = findViewById(R.id.userSignUp);
+
+            loginButton.setOnClickListener(v -> {
+                startActivity(new Intent(this, LoginActivity.class));
+            });
+            signUpButton.setOnClickListener(v -> {
+                startActivity(new Intent(this, SignUpActivity.class));
+            });
+        }
     }
 }
