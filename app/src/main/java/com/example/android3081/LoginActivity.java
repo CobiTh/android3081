@@ -39,7 +39,7 @@ public class LoginActivity extends ComponentActivity {
             String email = userEmail.getText().toString();
             String password = userPassword.getText().toString();
 
-            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            SharedPreferences prefs = getSharedPreferences("UserSettings", MODE_PRIVATE);
             String storedEmail = prefs.getString("email", "");
             String storedPass = prefs.getString("password","");
             if(email.equals(storedEmail) && password.equals(storedPass)){
@@ -47,6 +47,7 @@ public class LoginActivity extends ComponentActivity {
                 editor.putBoolean("isLoggedIn",true);
                 editor.apply();
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
             }
             else if (!email.equals(storedEmail)) {
                 Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();

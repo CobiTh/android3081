@@ -20,26 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("UserSettings", MODE_PRIVATE);
         boolean loggedIn = prefs.getBoolean("isLoggedIn", false);
 
-        if(loggedIn) {
-            setContentView(R.layout.activity_main);
-            // Reference the TextView from your XML
-            TextView greetingText = findViewById(R.id.textViewGreeting);
-            EditText inputField = findViewById(R.id.editTextInput);
-            Button submitButton = findViewById(R.id.buttonSubmit);
-
-            submitButton.setOnClickListener(v -> {
-                String text = inputField.getText().toString();
-
-                Trip thisTrip = new Trip(text);
-                System.out.println("New Trip ID: " + thisTrip.getId());
-
-                greetingText.setText("Hello " + text);
-            });
-        }
-        else{
+        if(!loggedIn) {
             setContentView(R.layout.welcome_activity);
 
             Button loginButton = findViewById(R.id.userLogin);
@@ -49,8 +33,32 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoginActivity.class));
             });
             signUpButton.setOnClickListener(v -> {
-                startActivity(new Intent(this, SignUpActivity.class));
+                        startActivity(new Intent(this, SignUpActivity.class));
+            });
+        } else {
+            setContentView(R.layout.activity_main);
+
+            TextView greetingText = findViewById(R.id.textViewGreeting);
+            EditText inputField = findViewById(R.id.editTextInput);
+            Button submitButton = findViewById(R.id.buttonSubmit);
+            Button signOutButton = findViewById(R.id.buttonSignout);
+            // to create a new trip
+            submitButton.setOnClickListener(v -> {
+                String text = inputField.getText().toString();
+
+                Trip thisTrip = new Trip(text);
+                System.out.println("New Trip ID: " + thisTrip.getId());
+
+                greetingText.setText("Hello " + text);
+            });
+
+            //to sign out of event
+            signOutButton.setOnClickListener(v -> {
+                getSharedPreferences("UserSettings", MODE_PRIVATE).edit().clear().apply();
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
             });
         }
+
     }
 }

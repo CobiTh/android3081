@@ -43,6 +43,9 @@ public class SignUpActivity extends AppCompatActivity {
             editor.putBoolean("isLoggedIn",true);
             editor.apply();
 
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+
 
         });
     }
