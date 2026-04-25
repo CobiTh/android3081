@@ -1,7 +1,5 @@
 package com.example.android3081;
 
-import static com.google.android.material.internal.ViewUtils.dpToPx;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,7 +12,6 @@ import android.widget.EditText;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.widget.LinearLayout;
@@ -22,7 +19,7 @@ import android.widget.LinearLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import android.widget.TextView; // Don't forget this import
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -69,25 +66,19 @@ public class MainActivity extends AppCompatActivity {
             TextView greetingText = findViewById(R.id.textViewGreeting);
             EditText inputField = findViewById(R.id.editTextInput);
             Button CreateTrip = findViewById(R.id.buttonSubmit);
-            Button signOutButton = findViewById(R.id.buttonSignout);
             LinearLayout inputContainer = findViewById(R.id.inputContainer);
             DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
             NavigationView navView = findViewById(R.id.nav_view);
-
-            // Handle menu item clicks, multiple items selected at once :O the future
             navView.setNavigationItemSelectedListener(item -> {
                 int id = item.getItemId();
                 if (id == R.id.nav_home) {
-                                // do something
+                     // probably gonna be a different button but that's ok
                 } else if (id == R.id.nav_profile) {
-                                // do something
-                } else if (id == R.id.buttonSignout){
-
+                    // go to profile
                 }
-
                 drawerLayout.closeDrawers();
                 return true;
-                });
+            });
             RecyclerView tripRecyclerView = findViewById(R.id.tripRecyclerView);
             tripRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             List<Trip> tripList = new ArrayList<>();
@@ -132,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 inputContainer.startAnimation(slideOut);
             });
 
-            //to sign out of event, currently deletes account for testing :)
-            signOutButton.setOnClickListener(v -> {
+            findViewById(R.id.buttonDrawerSignout).setOnClickListener(v -> {
                 getSharedPreferences("UserSettings", MODE_PRIVATE).edit().clear().apply();
                 user.clear();
                 user = null;
