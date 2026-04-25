@@ -19,7 +19,7 @@ public class Trip {
         return id;
     }
 
-    public String getTripName() {
+    public String getName() {
         return tripName;
     }
 

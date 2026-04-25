@@ -33,11 +33,12 @@ public class SignUpActivity extends AppCompatActivity {
         Button signupButton = findViewById(R.id.buttonSubmit);
 
         signupButton.setOnClickListener(v -> {
+            String userInput = username.getText().toString();
             String emailInput = userEmail.getText().toString();
             String passInput = userPassword.getText().toString();
             SharedPreferences.Editor editor = getSharedPreferences("UserSettings",MODE_PRIVATE).edit();
 
-            editor.putString("password",passInput);
+            editor.putString("username",userInput);
             editor.putString("password",passInput);
             editor.putString("email",emailInput);
             editor.putBoolean("isLoggedIn",true);
