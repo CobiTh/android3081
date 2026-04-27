@@ -57,15 +57,15 @@
             android:layout_height="0dp"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/textViewGreeting"
-            app:layout_constraintBottom_toTopOf="@id/buttonSignout"
+            app:layout_constraintBottom_toTopOf="@id/buttonMakeTrip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-
+           <!--I don't know why but don't remove this just repurpose        -->
         <Button
-            android:id="@+id/buttonSignout"
+            android:id="@+id/buttonMakeTrip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sign Out"
+            android:text="make trip"
             style="@style/Widget.Material3.Button.OutlinedButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

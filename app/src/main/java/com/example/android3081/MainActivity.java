@@ -121,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 inputContainer.startAnimation(slideOut);
+
+                //set makeTrip button on the button to new content
+                Button TEButton = findViewById(R.id.buttonMakeTrip);
+                TEButton.setText("add event");
             });
 
             findViewById(R.id.buttonDrawerSignout).setOnClickListener(v -> {
