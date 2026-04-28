@@ -2,15 +2,24 @@ package com.example.android3081;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "users")
-public class User implements Serializable {
+@Entity(tableName = "friends",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "user_id",
+                onDelete = ForeignKey.CASCADE))
+public class Friend implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "user_id")
+    private int userId;
 
     @ColumnInfo(name = "username")
     private String username;
@@ -18,15 +27,18 @@ public class User implements Serializable {
     @ColumnInfo(name = "email")
     private String email;
 
-    public User(String username, String email) {
+    public Friend(int userId, String username, String email) {
+        this.userId = userId;
         this.username = username;
         this.email = email;
     }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
     public String getUsername() { return username; }
-    public void setName(String username) { this.username = username; }
+    public void setUsername(String username) { this.username = username; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 }

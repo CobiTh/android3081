@@ -42,27 +42,52 @@
                 android:inputType="text"
                 android:layout_marginTop="32dp"/>
 
-            <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Create Trip"/>
+<!--            <Button-->
+<!--                android:id="@+id/buttonSubmit"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="Create Trip"/>-->
 
         </LinearLayout>
         <!--at some point make trips in bold and bigger :)-->
+        <TextView
+            android:id="@+id/textViewGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tripRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/textViewGreeting"
-            app:layout_constraintBottom_toTopOf="@id/buttonMakeTrip"
+            app:layout_constraintBottom_toTopOf="@id/buttonSubmit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
            <!--I don't know why but don't remove this just repurpose        -->
+
+        <!-- res/layout/example_activity.xml -->
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/event_fragment"
+            android:name="com.example.android3081.EventFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="87dp"
+            tools:layout_editor_absoluteY="24dp" />
+
         <Button
-            android:id="@+id/buttonMakeTrip"
+            android:id="@+id/buttonSubmit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="make trip"
@@ -104,3 +129,6 @@
 
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
+
+
+

@@ -1,61 +1,38 @@
 package com.example.android3081;
 
-import java.util.List;
-import java.util.ArrayList;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
 
-public class Trip {
+import java.io.Serializable;
 
+@Entity(tableName = "trips",
+        foreignKeys = @ForeignKey(
+                entity = User.class,
+                parentColumns = "id",
+                childColumns = "user_id",
+                onDelete = ForeignKey.CASCADE))
+public class Trip implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "user_id")
+    private int userId;
+
+    @ColumnInfo(name = "trip_name")
     private String tripName;
-    private List<Event> events;
 
-    public Trip(String name) {
-        this.id = Counter.getCounter().getIdCountAndIncrement();
-        this.tripName = name;
-        this.events = new ArrayList<Event>();
+    public Trip(int userId, String tripName) {
+        this.userId = userId;
+        this.tripName = tripName;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return tripName;
-    }
-
-    public boolean addEvent(Event newEvent) {
-        if (true) { //placeholder
-            events.add(newEvent);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    public Event makeEvent(String eventType) {
-        return new Event(eventType);
-    }
-
-    public boolean removeEvent(int idToRemove) {
-        for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getId() == idToRemove) {
-                events.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean swapEvent(int idx1, int idx2) {
-        if (true) { //placeholder
-            Event tempEvent = events.get(idx1);
-            events.set(idx1, events.get(idx2));
-            events.set(idx2, tempEvent);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+    public String getTripName() { return tripName; }
+    public void setName(String tripName) { this.tripName = tripName; }
 }
